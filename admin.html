@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin - SG Resorts</title>
+</head>
+
+<body>
+
+    <h1>All Bookings</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Persons</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="data"></tbody>
+    </table>
+
+    <script>
+        fetch("http://localhost:3000/bookings")
+            .then(res => res.json())
+            .then(data => {
+                let output = "";
+
+                data.forEach(item => {
+                    output += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.email}</td>
+                        <td>${item.phone}</td>
+                        <td>${item.persons}</td>
+                        <td>${item.date}</td>
+                    </tr>
+                `;
+                });
+
+                document.getElementById("data").innerHTML = output;
+            });
+    </script>
+
+</body>
+
+</html>
